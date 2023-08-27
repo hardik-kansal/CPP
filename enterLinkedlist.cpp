@@ -83,6 +83,128 @@ c++;
 
 
 
+Node *appendLastNToFirst(Node *head, int n)
+{if(n==0){
+	return head;
+}
+	  Node * tem=head;
+if(tem==NULL){
+	return head;
+}	  
+int T=0;
+    while(tem->next!=NULL){
+tem=tem->next;
+T++;
+	}
+int c=0;
+Node*tem2=head;
+while(c!=T-n){
+	tem2=tem2->next;
+	c++;
+}
+Node* newHead=tem2->next;
+tem2->next=NULL;
+tem->next=head;	
+	return newHead;
+}
+
+
+
+Node *removeDuplicates(Node *head)   // Consecutive duplicates
+{
+if(head==NULL){
+	return head;
+}
+    Node * tem1=head;
+	Node*tem2=head->next;
+	while (tem2) {
+	  if(tem1->data==tem2->data){
+		  tem1->next=tem2->next;
+	
+	  }
+	  else{
+		  	  tem1=tem2;
+	  }
+	  
+      tem2=tem2->next;
+	  
+	}
+	return head;
+}
+
+
+
+void printReverse(Node *head)
+{if(head){
+		 Node* tem=head;
+int c=1;
+while(tem->next!=NULL){
+	tem=tem->next;
+	c++;
+}
+ int arr[c];
+ Node* tem2=head;
+ int i=0;
+    while(tem2!=NULL){
+		arr[i]=tem2->data;
+		tem2=tem2->next;
+		i++;
+		}
+for(int i=c-1;i>-1;i--){
+	cout<<arr[i]<<" ";
+}	
+}
+}
+
+
+
+
+bool isPalindrome(Node *head)
+{
+	if(!head){
+		return true;
+	}
+	if(head->next==NULL){
+		return true;
+	}
+    int c=1;
+	Node * tem=head;
+	while(tem->next=NULL)
+{
+	tem=tem->next;
+	c++;
+}
+int arr[c/2];
+Node* tem2=head;
+bool check=true;
+if(c%2==0){
+	check=false;
+}
+for(int i=0;i<c;i++){
+if(i<c/2){
+	arr[i]=tem2->data;
+}
+else{
+	
+	if(check && i==c/2  ){
+	tem2=tem2->next;
+   continue;
+	}
+	if(arr[c-i-1]!=tem2->data){
+	return false;
+	}
+}
+tem2=tem2->next;
+	}	
+
+
+return true;
+
+
+}
+
+
+
 
 int main(){
 Node* head=enterdata();
@@ -94,3 +216,8 @@ insertNode(head,1,100);
 print(head);
 cout<<endl;
 }
+
+
+
+// Singly Linked list
+// Variations--Doubly,circular,doubly-circular
