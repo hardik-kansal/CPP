@@ -57,11 +57,32 @@ void printLevelWise(TreeNode<int>* root) {
 
 }
 
+void printRecursive(TreeNode<int>* root){
+    if(root==NULL){
+        return;
+    }
+    cout<<root->data<<":";
+    for(int i=0;i<root->children.size();i++){
+        printRecursive(root->children[i]);
+    }
+
+}
+// Given a tree and an integer x, find and return the number of nodes which contains data greater than x.
+int getLargeNodeCount(TreeNode<int>* root, int x) {
+    int n=0;
+    if(root->data>x){
+        n++;
+    }
+    for(int i=0;i<root->children.size();i++){
+      n=n+getLargeNodeCount(root->children[i], x);
+    }
+    return n;
+}
 
 
 int main(){
     TreeNode<int> *root=inputLevelWise();
     cout<<endl;
-    printLevelWise(root);
+    printRecursive(root);
 
 }
