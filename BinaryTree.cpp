@@ -5,8 +5,7 @@ using namespace std;
 
 int depth(BinaryTree<int>* root){
     if(root==NULL){return 0;}
-    int ans=1;
-    return ans+max(depth(root->left),depth(root->right));
+    return 1+max(depth(root->left),depth(root->right));
 }
 
 

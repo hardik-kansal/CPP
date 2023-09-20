@@ -53,7 +53,7 @@ int rightIndex=2;
 while(leftIndex<v.size()){
 int maxIndex=v[leftIndex]>v[rightIndex]?leftIndex:rightIndex;
 if(!(maxIndex<v.size())){
-    break;
+    maxIndex=leftIndex;
 }
 if(v[maxIndex]>v[parentIndex]){
 int tem=v[parentIndex];

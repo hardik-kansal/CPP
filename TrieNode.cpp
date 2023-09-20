@@ -56,6 +56,39 @@ public:
 bool search(string word){
 cout<<search(root,word)<<endl;
 }
+
+private:
+void remove(TrieNode* root,string word){
+    if(root==NULL){
+        return;
+    }
+    if(word.length()==0){
+        root->isTerminal=false;
+        return;
+    }
+    int index=word[0]-'a';
+    if(root->children[index]==NULL){
+return;
+    }
+    else{
+        remove(root->children[index],word.substr(1));
+    }
+    for(int i=0;i<26;i++){
+        if(root->children[i]!=NULL){
+            return;
+        }
+    }
+    if(!(root->isTerminal)){
+        delete root;
+    }
+
+
+}
+
+public:
+void remove(string word){
+    remove(root,word);
+}
 };
 
 
@@ -70,5 +103,7 @@ q.insert("bored");
 q.insert("bedtimee");
 q.insert("narauto");
 q.search("bench");
-q.search("bedtime");
+q.remove("bench");
+q.search("bench");
+
 }

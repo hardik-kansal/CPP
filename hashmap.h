@@ -17,14 +17,6 @@ next=NULL;
 }
 
 };
-
-
-
-
-
-
-
-
 template <typename T>
 class ourmap{
 int count;
@@ -70,21 +62,15 @@ bucket[index]=head->next;
 }
 return 0;
 }
-
-
-
-
-
-
 private:
 int getIndex(string key){
 int sum=0; 
 int p=1;   
 for(int i=key.size()-1;i>=0;i--){
 sum+=key[i]*p;
-sum=sum%bucketSize;
+sum=sum%bucketSize; // storage efficient --simple modulur maths !
 p*=37;
-p=p%bucketSize;
+p=p%bucketSize;  
 }
 return sum%bucketSize;
 }
