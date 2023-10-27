@@ -1,2 +1,2 @@
 -----------------------------
-# CODING NINJA CPP DSA
+# CPP DSA
