@@ -68,7 +68,7 @@ Node* insertNode(Node* head,int i,int data){
     if(i==0){
         Node* node=new Node(data);
         node->next=tem;
-return tem;
+return node;
     }
     while(c<i-1 && tem){
 tem=tem->next;
@@ -203,6 +203,67 @@ return true;
 
 }
 
+// ############################ GOOD PROBLEM #########################
+Node *evenAfterOdd(Node *head)
+{
+	if(head==NULL){
+		return NULL;
+	}
+	if(head->next==NULL){
+		return head;
+	}
+	Node* tem=head;
+	Node* eh=NULL;
+	Node*et=NULL;
+	Node* ot=NULL;
+	Node* oh=NULL;
+        while (tem != NULL) {
+        if(tem->data%2==0){
+			if(!eh){
+				eh=tem;
+				et=tem;
+			}
+			else{
+				et->next=tem;
+				et=tem;
+			}
+		}
+		else{
+			if(!oh){
+				oh=tem;
+				ot=tem;
+			}
+			else{
+				ot->next=tem;
+				ot=tem;
+			}
+		}
+		
+		tem=tem->next;
+		}
+		if(!oh){
+			et->next=NULL;			
+
+			return eh;
+		}
+if(!eh){
+	ot->next=NULL;
+	return oh;
+}
+ot->next=eh;
+et->next=NULL;
+return oh;
+}
+
+
+Node *skipMdeleteN(Node *head, int M, int N)
+{
+if(head==NULL){
+	return NULL;
+}
+
+
+}
 
 
 

@@ -105,7 +105,7 @@ class Stack {
 
     T pop() {
         if(!isEmpty()){
-           int tem= head->data;
+           T tem= head->data;
            head=head->next;
            size--;
 return tem;
@@ -118,4 +118,48 @@ return tem;
     int top() {
        return isEmpty()? -1:head->data;
     }
+};
+
+template <typename T>
+class vector{
+
+private:
+int capacity;
+T * array;
+int size;
+public:
+vector(){
+    capacity=1;
+    array=new T[capacity];
+    size=0;
+}
+bool isEmpty(){
+    return (size==0);
+}
+T top(){
+    return isEmpty()?-1:array[size-1];
+}
+void push_back(T data){
+    if(size==capacity){
+      T* array1=new T[capacity*2];
+      for (int i=0;i<capacity;i++){
+        array1[i]=array[i];
+      }
+      delete []array;
+      array=array1;
+      capacity=capacity*2;
+    }
+    array[size]=data;
+    size++;
+}
+T pop(){
+    if(isEmpty()){
+        return -1;
+    }
+    else{
+        size--;
+        T data=array[size];
+        return data;
+    }
+}
 };

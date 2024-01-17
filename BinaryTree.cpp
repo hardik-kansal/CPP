@@ -1,7 +1,23 @@
 #include <iostream>
 #include <climits>
 #include "BinaryTree.h"
+#include <vector>
+#include <queue>
 using namespace std;
+
+template <typename T>
+class Node{
+    public:
+    T data;
+    Node<T>* next;
+    Node(T data){
+        this->data=data;
+        next=NULL;
+
+    }
+};
+
+
 
 int depth(BinaryTree<int>* root){
     if(root==NULL){return 0;}
@@ -59,6 +75,105 @@ if(right){
     node->right = right;
 }
 return node;
+}
+void mirrorBinaryTree(BinaryTree<int>* root) {
+    if (root == NULL) {
+        return;
+    }
+    BinaryTree<int>* temp = root->left;
+    root->left = root->right;
+    root->right = temp;
+    mirrorBinaryTree(root->left);
+    mirrorBinaryTree(root->right);
+}
+vector<int> preOrder(BinaryTree<int> * root){
+if(root==NULL){
+    return vector<int>();
+}
+vector<int> v;
+v.push_back(root->data);
+vector<int> left=preOrder(root->left);
+for(int i=0;i<left.size();i++){
+    v.push_back(left[i]);
+}
+vector<int> right=preOrder(root->right);
+for(int i=0;i<right.size();i++){
+    v.push_back(right[i]);
+}
+return v;
+}
+
+BinaryTree<int>* buildTree(int *postorder, int postLength, int *inorder, int inLength) {
+int rootData=postorder[postLength-1];
+BinaryTree<int>* root=new BinaryTree<int>(rootData);
+int l=0;
+for(int i=0;i<inLength;i++){
+    if(inorder[i]==rootData){
+        break;
+}
+        l++;
+
+}
+BinaryTree<int>* left=buildTree(postorder,l,inorder,l);
+BinaryTree<int>* right=buildTree(postorder+l,postLength-l-1,inorder+l+1,inLength);
+
+if(left){
+    root->left=left;
+}
+if(right){
+    root->right=right;
+}
+return root;
+
+
+}
+void printLevelWise(BinaryTree<int> *root) {
+if(root==NULL){
+	return;
+}
+queue<BinaryTree<int>*> q;
+q.push(root);
+q.push(NULL);
+while(!q.empty()){
+BinaryTree<int>* front=q.front();
+q.pop();
+if(front==NULL){
+	cout<<endl;
+	if(!q.empty()){
+		q.push(NULL);
+	}
+}
+else{
+	cout<<front->data<<' ';
+	if(front->left){q.push(front->left);}
+    if(front->right){q.push(front->right);}
+
+}
+}
+}
+
+void printLevel(BinaryTree<int>* root){
+    if(root==NULL){return;}
+    queue<BinaryTree<int>*> q;
+    q.push(root);
+    q.push(NULL);
+    while(!q.empty()){
+
+        BinaryTree<int>* node=q.front();
+        q.pop();
+        if(node==NULL){
+            cout<<endl;
+
+            if(!q.empty()){
+            q.push(NULL);
+            }
+        }
+        
+        if(root->left){q.push(root->left);}
+       if(root->right){q.push(root->right);}        
+       cout<<node->data<<" ";
+
+    }
 }
 
 int main(){

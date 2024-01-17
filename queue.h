@@ -1,5 +1,17 @@
 #include <iostream>
 using namespace std;
+
+class Node{
+public:
+int data;
+Node* next;
+Node(int data){
+    this->data=data;
+    next=NULL;
+}
+};
+
+
 template <typename T>
 class QueueUsingArray{
     private:
@@ -64,6 +76,59 @@ T dequeue(){
         nextIndex=0;
     }
     return fi;
+}
+};
+
+
+class queueUsingLL{
+private:
+int size;
+Node* head;
+Node* tail;
+public:
+
+queueUsingLL(){
+    head=NULL;
+    tail=NULL;
+    size=0;
+}
+bool isEmpty(){
+    return size==0;
+}
+int getSize(){
+    return size;
+}
+int front(){
+if(isEmpty()){
+    return -1;
+}
+else{
+    return head->data;
+}}
+void enqueue(int data){
+Node* node=new Node(data);
+if(isEmpty()){
+
+
+    this->head=node;
+    this->tail=node;
+}
+else{
+    tail->next=node;
+    tail=node;
+}
+    size++;
+}
+int dequeue(){
+    if(isEmpty()){
+        return -1;
+    }
+    int tem=head->data;
+    Node* next=head->next;
+    delete head;
+    head=next;
+    size--;
+    return tem;
 }
 
 };
